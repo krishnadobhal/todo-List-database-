@@ -10,9 +10,7 @@ const HomeitemsSchema=mongoose.Schema({
     name:String
 })
 
-
-HomeItem=new mongoose.model("item",HomeitemsSchema);
-
+HomeItem=new mongoose.model("item",HomeitemsSchema); 
 
 const item1=new HomeItem({
     name:"1st"
@@ -52,29 +50,22 @@ app.get("/", (req,res)=>{
     })
 });
 
-app.get("/work",(req,res)=>{
-    res.render("index",{name:"Work",newitem: Workitems});
-});
 
 app.post("/",(req,res)=>{
-    if(req.body.button=="Work"){
-        var b=req.body.items; 
-        Workitems.push(b);
-        res.redirect('/work')
-    }
-    else{
-        var a=req.body.items; 
-        var item=new HomeItem({
-            name:a
-        });
-        item.save();
-        res.redirect('/')
-    }
+    var a=req.body.items; 
+    var item=new HomeItem({
+        name:a
+    });
+    item.save();
+    res.redirect('/')
 })
 
 HomeItem.find({})
 .then(item=>{
     console.log(item.length)
+})
+.catch(error=>{
+    console.log("error3")
 })
 app.listen(80,()=>{
     console.log("listening");
