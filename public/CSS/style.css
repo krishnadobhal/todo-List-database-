@@ -29,9 +29,6 @@ h1{
     width: 33rem;
     margin-left: 3rem;
 }
-input:checked+p{
-    text-decoration: line-through;
-}
 p{
     font-size: 2rem;
     font-family: 'Noto Sans', sans-serif;

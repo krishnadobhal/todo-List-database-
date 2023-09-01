@@ -52,20 +52,24 @@ app.get("/", (req,res)=>{
 
 
 app.post("/",(req,res)=>{
-    var a=req.body.items; 
-    var item=new HomeItem({
+    let a=req.body.items; 
+    let item=new HomeItem({
         name:a
     });
     item.save();
     res.redirect('/')
 })
 
-HomeItem.find({})
-.then(item=>{
-    console.log(item.length)
-})
-.catch(error=>{
-    console.log("error3")
+app.post("/delete",(req,res)=>{
+    let a=req.body.checkbox;
+    HomeItem.deleteMany({_id:a})
+    .then(result => {
+        console.log(`Deleted documents.`+a);
+    })
+    .catch(error => {
+        console.error(`Error deleting documents`);
+    });
+    res.redirect('/')
 })
 app.listen(80,()=>{
     console.log("listening");

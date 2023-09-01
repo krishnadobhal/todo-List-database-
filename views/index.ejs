@@ -18,12 +18,14 @@
     <div class="parent">
         <div class="box">
             <div>
+                <form action="/delete" method="post">
                 <% newitem.forEach((item)=>{ %>
                     <div class="child">
-                        <input type="checkbox">
+                        <input type="checkbox" name="checkbox"  onChange="this.form.submit()" value=<%=item._id %>>
                         <p><%= item.name%></p>
                     </div>
                     <% }) %>
+                </form>
             </div>
             <form action="/" method="post">
                 <input type="text" name="items" class="input" placeholder="Add new todo" autocomplete="off">
