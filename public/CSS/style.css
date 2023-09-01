@@ -1,0 +1,60 @@
+body{
+    background-color: #749BC2;
+}
+.parent{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 45rem;
+    width: 100%;
+}
+h1{
+    position: absolute;
+    right: 10px;
+}
+.child{
+    display: flex;
+    align-items : center;
+}
+.box{
+    background-color: #91C8E4;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    width:  40rem;
+    border-radius: 15px;
+}
+.input{
+    height: 2rem;
+    width: 33rem;
+    margin-left: 3rem;
+}
+input:checked+p{
+    text-decoration: line-through;
+}
+p{
+    font-size: 2rem;
+    font-family: 'Noto Sans', sans-serif;
+    border: 3px solid #91C8E4;
+    background-color: #91C8E4;
+    width: 35rem;
+    margin-left: 3rem;
+}
+.Submit {
+    background-color: #91C8E4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pseudo-element to display the plus sign */
+.Submit::before {
+    content: "+";
+}
