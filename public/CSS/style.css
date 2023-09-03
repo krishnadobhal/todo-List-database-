@@ -1,23 +1,26 @@
 body{
-    background-color: #749BC2;
+    background-color:#974EC3;
 }
 .parent{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 45rem;
-    width: 100%;
-}
-h1{
+    margin-top: 12rem;
     position: absolute;
-    right: 10px;
+    top: 1px; /* Anchored to the top */
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Content aligned to the top */
+    min-height: 45rem; /* Minimum height to allow upward expansion */
+    width: 100%;
+    
 }
 .child{
     display: flex;
     align-items : center;
 }
 .box{
-    background-color: #91C8E4;
+    background-color:#DFCCFB;  
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -32,14 +35,14 @@ h1{
 p{
     font-size: 2rem;
     font-family: 'Noto Sans', sans-serif;
-    border: 3px solid #91C8E4;
-    background-color: #91C8E4;
+    border: 3px solid #DFCCFB;
+    background-color: #DFCCFB;
     width: 35rem;
     margin-left: 3rem;
 }
 .Submit {
-    background-color: #91C8E4;
-    color: white;
+    background-color: #FFF3DA;
+    color: black;
     border: none;
     border-radius: 50%;
     font-size: 18px;
@@ -49,9 +52,38 @@ p{
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1rem;
+    transition: all 0.5s ease-in-out;
 }
-
+.Submit:hover{
+    transform: rotate(90deg);
+}
+input{
+    margin-right: 2px;
+    border-radius: 10px;
+    text-align: center;
+}
 /* Pseudo-element to display the plus sign */
 .Submit::before {
     content: "+";
+    font-size: 1.5rem;
+}
+.h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    
+}
+h1{
+    color: #2c1571; 
+}
+.h1-child{
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid white;
+    border-radius: 10px;
+    background-color:#D0BFFF;
 }
