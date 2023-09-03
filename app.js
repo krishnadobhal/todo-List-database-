@@ -1,15 +1,13 @@
 const express=require("express")
 const bodyParser=require("body-parser");
 const { default: mongoose } = require("mongoose");
-const date=require(__dirname+"/date.js")
 
 mongoose.connect("mongodb://127.0.0.1:27017/TodoList");
-
 
 const HomeitemsSchema=mongoose.Schema({
     name:String
 })
-HomeItem=mongoose.model("item",HomeitemsSchema); 
+const HomeItem=mongoose.model("item",HomeitemsSchema); 
 
 const item1=new HomeItem({
     name:"1st"
@@ -18,7 +16,6 @@ const item2=new HomeItem({
     name:"2nd"
 })
 const defaultItems=[item1,item2];
-// item2.save()
 
 const listItemsSchema=mongoose.Schema({
     name:String,
@@ -33,7 +30,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", (req,res)=>{
-    let d=date.getDate();
     HomeItem.find({})
     .then(item=>{
         if(item.length==0){
@@ -60,35 +56,30 @@ app.get("/:route",(req,res)=>{
     List.findOne({name:customName})
         .then((item)=>{
             if(!item){
-                console.log("Does't exist")
                 const list=new List({
                     name:customName,
                     items:defaultItems
                 })
                 list.save()
+                console.log("Added")
                 res.redirect("/"+customName)
+                
             }
             else{
-                console.log("exist")
                 res.render("index",{name : item.name,newitem : item.items})
             }
         })
         .catch((error)=>{
             console.log("error4")
         })
-        // const list=new List({
-        //     name:customName,
-        //     items:defaultItems
-        // })
-        // list.save()
 })
 
 app.post("/",(req,res)=>{
     let a=req.body.items; 
     let ListName=req.body.button;
-        let item=new HomeItem({
-            name:a
-        });
+    let item=new HomeItem({
+        name:a
+    });
     if(ListName=="Home"){
         item.save();
         res.redirect('/')
@@ -108,14 +99,27 @@ app.post("/",(req,res)=>{
 
 app.post("/delete",(req,res)=>{
     let a=req.body.checkbox;
-    HomeItem.deleteMany({_id:a})
-    .then(result => {
-        console.log(`Deleted documents.`+a);
-    })
-    .catch(error => {
-        console.error(`Error deleting documents`);
-    });
-    res.redirect('/')
+    let ListName =req.body.List; 
+    if(ListName=="Home"){
+        HomeItem.deleteMany({_id:a})
+        .then(result => {
+            console.log(`Deleted documents.`+a);
+        })
+        .catch(error => {
+            console.error(`Error deleting documents`);
+        });
+        res.redirect('/')
+        }
+        else{
+            List.findOneAndUpdate({name:ListName},{$pull:{items:{_id:a}}})
+                .then(result => {
+                    console.log(`Deleted documents.`+a);
+                })
+                .catch(error => {
+                    console.error(`Error deleting documents`);
+                });
+                res.redirect("/"+ListName)
+    }
 })
 app.listen(80,()=>{
     console.log("listening");

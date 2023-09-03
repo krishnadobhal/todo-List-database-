@@ -1,22 +1,29 @@
 <%- include('partials/header'); -%>
-    <h1>
-        <%= name %>
-    </h1>
+    <div class="h1">
+        <div class="h1-child">
+            <h1>
+                <%= name %>
+            </h1>
+        </div>
+    </div>
     <div class="parent">
         <div class="box">
-            <div>
+            <div class="form">
                 <form action="/delete" method="post">
                 <% newitem.forEach((item)=>{ %>
                     <div class="child">
-                        <input type="checkbox" name="checkbox"  onChange="this.form.submit()" value=<%=item._id %>>
+                        <input type="checkbox" name="checkbox" onChange="this.form.submit()" value=<%=item._id %>>
                         <p><%= item.name%></p>
                     </div>
                     <% }) %>
+                    <input name="List" type="hidden" value=<%=name%>>
                 </form>
             </div>
             <form action="/" method="post">
-                <input type="text" name="items" class="input" placeholder="Add new todo" autocomplete="off">
-                <button type="submit" name="button" class="Submit" value=<%= name%>></button>
+                <div class="form-submit">
+                    <input type="text" name="items" class="input" placeholder="Add new todo" autocomplete="off">
+                    <button type="submit" name="button" class="Submit" value=<%= name%>></button>
+            </div>
             </form>
         </div>
     </div>

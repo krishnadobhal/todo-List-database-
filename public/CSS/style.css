@@ -39,6 +39,8 @@ p{
     background-color: #DFCCFB;
     width: 35rem;
     margin-left: 3rem;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
 }
 .Submit {
     background-color: #FFF3DA;
@@ -62,6 +64,12 @@ input{
     margin-right: 2px;
     border-radius: 10px;
     text-align: center;
+    border: 0.1px solid white;
+    background-color: #DFCCFB;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
 }
 /* Pseudo-element to display the plus sign */
 .Submit::before {
@@ -86,4 +94,26 @@ h1{
     border: 0px solid white;
     border-radius: 10px;
     background-color:#D0BFFF;
+}
+/* mobile */
+@media(max-width:670px ){
+    .box{
+        width: 100%;
+    }
+    .child{
+        width: 100%;
+    }
+    .form{
+        width: 100%;
+    }
+    .input{
+        width: 100%;
+    }
+    .Submit{
+        width: 100%;
+    }
+    .form-submit{
+        display: inline-flex;
+        justify-content: flex-start;
+    }
 }
