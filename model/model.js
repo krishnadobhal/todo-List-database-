@@ -8,10 +8,10 @@ const HomeitemsSchema=mongoose.Schema({
 const HomeItem=mongoose.model("item",HomeitemsSchema); 
 
 const item1=new HomeItem({
-    name:"1st"
+    name:"Add Items"
 })
 const item2=new HomeItem({
-    name:"2nd"  
+    name:"<--Click Here to delete"  
 })
 const defaultItems=[item1,item2];
 
